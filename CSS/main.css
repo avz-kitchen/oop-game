@@ -1,0 +1,19 @@
+body {
+    background-color: blueviolet;
+    margin:0;
+    padding:0;
+}
+#board {
+    width: 100vw;
+    height: 200vh;
+    background-color:#E0E9EB;
+    position: relative;
+}
+#player {
+    background-color: #558DB5;
+    width: 10vw;
+    height: 10vh;
+    position: absolute;
+    bottom: 0vw;
+    left: 0vh;
+}
