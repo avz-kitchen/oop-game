@@ -1,14 +1,18 @@
 body {
     background-color: blueviolet;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
+
 #board {
     width: 100vw;
-    height: 200vh;
-    background-color:#E0E9EB;
+    height: 100vh;
+    background-color: #E0E9EB;
     position: relative;
+    overflow: hidden;
+
 }
+
 #player {
     background-color: #558DB5;
     width: 10vw;
@@ -16,4 +20,8 @@ body {
     position: absolute;
     bottom: 0vw;
     left: 0vh;
+}
+.obstacle {
+    background-color: #90A252;
+    position: absolute;
 }

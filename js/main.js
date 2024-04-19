@@ -33,31 +33,31 @@ class Player {
 };
 
 class Obstacle {
-    constructor(){
-    this.positionX = 50;
-    this.positionY = 85;
-    this.width = 10;
-    this.height = 10;
-    this.obstacleElm = null;
+    constructor() {
+        this.positionX = 50;
+        this.positionY = 85;
+        this.width = 10;
+        this.height = 10;
+        this.obstacleElm = null;
 
-    this.createDomElement();
-};
-createDomElement(){
-    this.obstacleElm = document.createElement("div");
+        this.createDomElement();
+    };
+    createDomElement() {
+        this.obstacleElm = document.createElement("div");
 
-    this.obstacleElm.className = "obstacle";
-    this.obstacleElm.style.left = this.positionX + "vw";
-    this.obstacleElm.style.bottom = this.positionY + "vw";
-    this.obstacleElm.style.width = this.width + "vw";
-    this.obstacleElm.style.height = this.height + "vh";
+        this.obstacleElm.className = "obstacle";
+        this.obstacleElm.style.left = this.positionX + "vw";
+        this.obstacleElm.style.bottom = this.positionY + "vw";
+        this.obstacleElm.style.width = this.width + "vw";
+        this.obstacleElm.style.height = this.height + "vh";
 
-    const parentElm = document.getElementById("board");
-    parentElm.appendChild(this.obstacleElm);
-}
-moveDown(){
-    this.positionY--;
-    this.obstacleElm.style.bottom  = this.positionY + "vh";
-}
+        const parentElm = document.getElementById("board");
+        parentElm.appendChild(this.obstacleElm);
+    }
+    moveDown() {
+        this.positionY--;
+        this.obstacleElm.style.bottom = this.positionY + "vh";
+    }
 
 }
 
@@ -69,16 +69,27 @@ const obstaclesArr = [];
 setInterval(() => {
     const newObstacle = new Obstacle();
     obstaclesArr.push(newObstacle);
-},3000)
+}, 3000)
 
 
 //move all obstacles
-setInterval(() =>  {
+setInterval(() => {
     obstaclesArr.forEach((obstacleInstance) => {
         obstacleInstance.moveDown();
+
+        //detect collision
+        if (
+            player.positionX < obstacleInstance.positionX + obstacleInstance.width &&
+            player.positionX + player.width > obstacleInstance.positionX &&
+            player.positionY < obstacleInstance.positionY + obstacleInstance.height &&
+            player.positionY + player.height > obstacleInstance.positionY
+        ) {
+            console.log("game over my fren!");
+            location.href = "gameover.html"
+        }
     })
 
-}, 100)
+}, 30)
 
 document.addEventListener("keydown", (e) => {
     if (e.code === "ArrowLeft") {
